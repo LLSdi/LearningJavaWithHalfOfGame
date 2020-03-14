@@ -31,13 +31,10 @@ public class TestReceive {
                 DatagramPacket datagramPacket_2 = new DatagramPacket(bytes_2, bytes_2.length, InetAddress.getByName("localhost"),8888);
                 datagramSocket.send(datagramPacket_2);
             }
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (SocketException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+            assert datagramSocket != null;
             datagramSocket.close();
         }
     }

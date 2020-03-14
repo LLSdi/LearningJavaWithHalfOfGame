@@ -13,6 +13,7 @@
         <module>LearnSQL</module>
         <module>LearnMultiThread</module>
         <module>LearnNetworkProgramming</module>
+        <module>ForTest</module>
     </modules>
 
     <dependencies>
