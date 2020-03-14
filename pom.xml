@@ -12,6 +12,7 @@
         <module>LearnIO</module>
         <module>LearnSQL</module>
         <module>LearnMultiThread</module>
+        <module>LearnNetworkProgramming</module>
     </modules>
 
     <dependencies>

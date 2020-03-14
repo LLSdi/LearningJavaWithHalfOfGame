@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="LearnMultiThread" />
         <module name="LearnSQL" />
+        <module name="LearnNetworkProgramming" />
         <module name="LearnIO" />
       </profile>
     </annotationProcessing>
