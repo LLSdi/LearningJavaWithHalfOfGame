@@ -1,4 +1,4 @@
-package Algorithms_Forth_Edition.part1.study;
+package AlgorithmsFourthEdition.part1.study;
 
 /**
  * 利用递归求最大公约数

@@ -1,4 +1,4 @@
-package Algorithms_Forth_Edition.part1.practice;
+package AlgorithmsFourthEdition.part1.practice;
 
 /**
  * 打印出一个M*N的矩阵的转置

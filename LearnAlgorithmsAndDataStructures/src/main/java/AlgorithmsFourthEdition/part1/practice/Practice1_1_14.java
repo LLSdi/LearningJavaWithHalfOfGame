@@ -1,4 +1,4 @@
-package Algorithms_Forth_Edition.part1.practice;
+package AlgorithmsFourthEdition.part1.practice;
 
 /**
  * 接受一个整型实数，返回不大于log2(N)的最大实数

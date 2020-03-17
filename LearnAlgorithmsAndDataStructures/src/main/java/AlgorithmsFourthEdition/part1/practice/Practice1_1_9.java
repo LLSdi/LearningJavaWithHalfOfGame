@@ -1,4 +1,4 @@
-package Algorithms_Forth_Edition.part1.practice;
+package AlgorithmsFourthEdition.part1.practice;
 
 /**
  * 将一个整数转化为二进制数字符串

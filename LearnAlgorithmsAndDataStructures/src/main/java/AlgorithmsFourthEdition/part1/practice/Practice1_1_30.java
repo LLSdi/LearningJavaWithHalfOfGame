@@ -1,4 +1,4 @@
-package Algorithms_Forth_Edition.part1.practice;
+package AlgorithmsFourthEdition.part1.practice;
 
 /**
  * 创建一个N*N的数组，当i和j互质时A[i][j]为true，否则为false

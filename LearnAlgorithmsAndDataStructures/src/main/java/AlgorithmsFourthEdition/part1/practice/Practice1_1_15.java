@@ -1,4 +1,4 @@
-package com.part1.practice;
+package AlgorithmsFourthEdition.part1.practice;
 
 /**
  * 给出该函数的返回值

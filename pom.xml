@@ -18,6 +18,7 @@
         <module>LearnJunit</module>
         <module>LearnJavaLog</module>
         <module>LearnAlgorithmsAndDataStructures</module>
+        <module>LearnDesignPatterns</module>
     </modules>
 
     <dependencies>
