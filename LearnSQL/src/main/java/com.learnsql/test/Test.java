@@ -53,6 +53,7 @@ public class Test {
 
     public static void main(String[] args) {
 
+        addUser(4,"test", "2035-8-14");
         findALlUser();
     }
 }
