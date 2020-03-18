@@ -19,6 +19,7 @@
         <module>LearnJavaLog</module>
         <module>LearnAlgorithmsAndDataStructures</module>
         <module>LearnDesignPatterns</module>
+        <module>LearnBigData</module>
     </modules>
 
     <dependencies>

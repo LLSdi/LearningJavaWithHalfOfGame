@@ -4,6 +4,7 @@
  */
 public class ATest {
     public static void main(String[] args) {
-        System.out.println("Hello World!!");
+        char[] chs = new char[20];
+        System.out.println(chs.length);
     }
 }

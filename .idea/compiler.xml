@@ -8,11 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="LearnDesignPatterns" />
         <module name="LearnFunctionalProgramming" />
-        <module name="LearnIO" />
+        <module name="LearnBigData" />
         <module name="ForTest" />
         <module name="LearnAlgorithmsAndDataStructures" />
         <module name="LearnNetworkProgramming" />
         <module name="LearnSQL" />
+        <module name="LearnIO" />
         <module name="LearnMultiThread" />
         <module name="LearnJavaLog" />
         <module name="LearnJunit" />
