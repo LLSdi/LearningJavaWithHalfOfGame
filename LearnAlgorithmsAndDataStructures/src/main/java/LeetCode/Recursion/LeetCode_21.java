@@ -1,4 +1,4 @@
-package LeetCode.LinkedList;
+package LeetCode.Recursion;
 
 
 public class LeetCode_21 {
