@@ -20,6 +20,7 @@
         <module>LearnAlgorithmsAndDataStructures</module>
         <module>LearnDesignPatterns</module>
         <module>LearnBigData</module>
+        <module>LearnJVM</module>
     </modules>
 
     <dependencies>
