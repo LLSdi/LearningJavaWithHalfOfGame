@@ -1,6 +1,9 @@
 package com.servlet;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -11,11 +14,17 @@ import java.io.IOException;
 @WebServlet(name = "MyServlet_1",urlPatterns = {"/MyServlet_1"})
 
 public class MyServlet_1 extends javax.servlet.http.HttpServlet {
-    protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+    private long count = 0;
+
+    public long getCount() {
+        return count++;
+    }
+
+    protected synchronized void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         doGet(request, response);
     }
 
-    protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-        response.getWriter().println("Hello World!!");
+    protected synchronized void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+        response.getWriter().println(getCount());
     }
 }

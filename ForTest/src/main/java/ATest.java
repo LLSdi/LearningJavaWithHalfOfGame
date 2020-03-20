@@ -8,8 +8,9 @@ import java.io.File;
  */
 public class ATest {
     public static void main(String[] args) throws CloneNotSupportedException {
-        File file = new File("C:\\Users\\Dm20\\Desktop\\JVM_1");
-        System.out.println(file.getAbsoluteFile());
+        while (true){
+            System.out.println("hello world");
+        }
 
     }
 }

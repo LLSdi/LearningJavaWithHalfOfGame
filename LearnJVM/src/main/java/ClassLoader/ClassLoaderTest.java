@@ -1,4 +1,4 @@
-package classLoader;
+package ClassLoader;
 
 /**
  * @author halfOfGame
