@@ -24,7 +24,7 @@ import java.util.stream.Stream;
  */
 public class ModifyFileName {
     public static void main(String[] args) throws IOException, ParseException {
-        File path = new File("C:\\Users\\Dm20\\Desktop\\JVM_1");
+        File path = new File("C:\\Users\\Dm20\\Desktop\\bilibili\\82690951");
         Collection<File> files = FileUtils.listFiles(path, null, true);
         int count = 0;
         String fileName = "";
@@ -32,7 +32,7 @@ public class ModifyFileName {
             if (count % 2 == 0) {
                 fileName = parseJson(file.getAbsolutePath(), "PartName");
             } else {
-                move(file.getAbsolutePath(), "C:\\Users\\Dm20\\Desktop\\JVM_2\\" + fileName + ".flv");
+                move(file.getAbsolutePath(), "C:\\Users\\Dm20\\Desktop\\111\\lombok\\" + fileName + ".flv");
             }
             count++;
         }

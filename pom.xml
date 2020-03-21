@@ -21,6 +21,7 @@
         <module>LearnDesignPatterns</module>
         <module>LearnBigData</module>
         <module>LearnJVM</module>
+        <module>LearnAnnotation</module>
     </modules>
 
     <dependencies>
