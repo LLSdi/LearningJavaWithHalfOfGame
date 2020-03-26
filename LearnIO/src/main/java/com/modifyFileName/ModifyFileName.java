@@ -24,7 +24,7 @@ import java.util.stream.Stream;
  */
 public class ModifyFileName {
     public static void main(String[] args) throws IOException, ParseException {
-        File path = new File("C:\\Users\\Dm20\\Desktop\\bilibili\\82690951");
+        File path = new File("C:\\Users\\Dm20\\Desktop\\88907482");
         Collection<File> files = FileUtils.listFiles(path, null, true);
         int count = 0;
         String fileName = "";
@@ -32,10 +32,11 @@ public class ModifyFileName {
             if (count % 2 == 0) {
                 fileName = parseJson(file.getAbsolutePath(), "PartName");
             } else {
-                move(file.getAbsolutePath(), "C:\\Users\\Dm20\\Desktop\\111\\lombok\\" + fileName + ".flv");
+                move(file.getAbsolutePath(), "C:\\Users\\Dm20\\Desktop\\springshiwuchuli\\" + fileName + ".flv");
             }
             count++;
         }
+        System.out.println("提取完成！！");
     }
 
     //给出文件路径和Key，返回value

@@ -14,16 +14,16 @@ public class ParseDescription {
 
         try {
             Class c = Class.forName("MyFirstAnnotation.Test");
-            boolean classIsExist = c.isAnnotationPresent(Description.class);
-            if (classIsExist) {
+            boolean IsExist = c.isAnnotationPresent(Description.class);
+            if (IsExist) {
                 Description description = (Description)c.getAnnotation(Description.class);
                 System.out.println(description.desc());
             }
 
             Method[] methods = c.getMethods();
             for (Method method : methods) {
-                boolean methodIsExist = method.isAnnotationPresent(Description.class);
-                if (methodIsExist) {
+                IsExist = method.isAnnotationPresent(Description.class);
+                if (IsExist) {
                     Description description = method.getAnnotation(Description.class);
                     System.out.println(description.desc());
                 }

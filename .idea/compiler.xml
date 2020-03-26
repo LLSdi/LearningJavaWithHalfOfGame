@@ -6,18 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="LearnDesignPatterns" />
-        <module name="LearnFunctionalProgramming" />
-        <module name="LearnBigData" />
-        <module name="ForTest" />
-        <module name="LearnAlgorithmsAndDataStructures" />
-        <module name="LearnNetworkProgramming" />
-        <module name="LearnSQL" />
-        <module name="LearnJVM" />
-        <module name="LearnMultiThread" />
-        <module name="LearnJavaLog" />
         <module name="LearnIO" />
+        <module name="LearnJVM" />
+        <module name="LearnNetworkProgramming" />
+        <module name="LearnSpring" />
+        <module name="LearnAlgorithmsAndDataStructures" />
+        <module name="LearnFunctionalProgramming" />
+        <module name="LearnAnnotation" />
         <module name="LearnJunit" />
+        <module name="ForTest" />
+        <module name="LearnDesignPatterns" />
+        <module name="LearnSQL" />
+        <module name="LearnMultiThread" />
+        <module name="LearnBigData" />
+        <module name="LearnJavaLog" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
