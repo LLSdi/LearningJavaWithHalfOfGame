@@ -1,13 +1,12 @@
+import DataStructuresAndAlgorithmAnalysisThirdEdition.MyTree;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Test {
     public static void main(String[] args) {
-        Map<Integer, Integer> hashMap = new HashMap<>();
-        hashMap.put(1, 1);
-        hashMap.put(2, 2);
-        hashMap.put(3, 3);
-        hashMap.put(4, 4);
-        hashMap.put(5, 5);
+        MyTree myTree = new MyTree();
+        myTree.createTree(new Integer[]{1, 2, 3, 4, 5, null, null, null, null});
+        myTree.levelTraverseTres(myTree.getHead());
     }
 }
