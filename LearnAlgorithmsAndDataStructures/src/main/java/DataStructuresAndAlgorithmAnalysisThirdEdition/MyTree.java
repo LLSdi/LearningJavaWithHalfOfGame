@@ -19,8 +19,29 @@ public class MyTree {
         }
     }
 
+    public Integer getData(TreeNode node) {
+        if (node != null)
+            return node.data;
+        else
+            return null;
+    }
+
     public TreeNode getHead() {
         return head;
+    }
+
+    public TreeNode getLeft(TreeNode node) {
+        if (node != null)
+            return node.left;
+        else
+            return null;
+    }
+
+    public TreeNode getRight(TreeNode node) {
+        if (node != null)
+            return node.right;
+        else
+            return null;
     }
 
     //按照层填充生成一颗树
@@ -70,7 +91,7 @@ public class MyTree {
     }
 
     //按层次遍历树
-    public void levelTraverseTres(TreeNode head) {
+    public void levelTraverseTree(TreeNode head) {
         Queue<TreeNode> queue = new LinkedList();
         queue.add(head);
         while (!queue.isEmpty()) {
@@ -83,6 +104,53 @@ public class MyTree {
         }
     }
 
-    //按层次遍历树，并且打印层级关系
 
+    /**
+     *按层次遍历树，并且打印层级关系
+     *last记录当前行的最右节点
+     *nlast记录下一行的最右节点，每进入一个节点就刷新一次
+     */
+    public void levelTraverseTree_2(TreeNode head) {
+        TreeNode last = head, nlast = null;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(head);
+        while (!queue.isEmpty()) {
+            TreeNode temp = queue.poll();
+            System.out.print(temp.data + " ");
+            if (temp.left != null){
+                queue.add(temp.left);
+                nlast = temp.left;
+            }
+            if (temp.right != null) {
+                queue.add(temp.right);
+                nlast = temp.right;
+            }
+            if (temp == last) {
+                System.out.println();
+                last = nlast;
+            }
+        }
+    }
+
+    /**
+     * 返回p和q共同的祖先节点
+     * @param root
+     * @param p
+     * @param q
+     * @return
+     */
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root==null || root==p || root==q)
+            return root;
+
+        TreeNode leftNode=lowestCommonAncestor(root.left,p,q);
+        TreeNode rightNode=lowestCommonAncestor(root.right,p,q);
+
+        if(leftNode==null)
+            return rightNode;
+        if(rightNode==null)
+            return leftNode;
+
+        return root;
+    }
 }
