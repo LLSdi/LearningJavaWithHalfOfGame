@@ -1,18 +1,20 @@
-import com.sun.deploy.association.Action;
-
-import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 /**
  * @author halfOfGame
  * @create 2020-03-17,12:47
  */
+
 public class ATest {
-    static int a;
-    int b;
 
-    public static void main(String[] args) throws CloneNotSupportedException {
-        System.out.println(a);
-        System.out.println(new ATest().b);
-
+    //result = [3,3],[2,4],[1,5],
+    public static void main(String[] args) {
+        System.out.println((17) % (10));        //result = 7
+        System.out.println((17) % (-10));        //result = 7
+        System.out.println((-17) % (10));        //result = -7
+        System.out.println((-17) % (-10));        //result = -7
     }
 }

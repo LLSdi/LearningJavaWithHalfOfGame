@@ -1,12 +1,15 @@
 package DataStructuresAndAlgorithmAnalysisThirdEdition;
 
+import sun.reflect.generics.tree.Tree;
+
 import java.util.*;
 
 public class MyTree {
 
-    private TreeNode head;
+    public TreeNode head;
 
-    private static class TreeNode {
+    //定义树的数据结构
+    public static class TreeNode {
         TreeNode left;
         TreeNode right;
         Integer data;
@@ -19,33 +22,13 @@ public class MyTree {
         }
     }
 
-    public Integer getData(TreeNode node) {
-        if (node != null)
-            return node.data;
-        else
-            return null;
+    //---------------------------初始化二叉树----------------------------
+    public MyTree(Integer[] nums) {
+        initTree(nums);
     }
 
-    public TreeNode getHead() {
-        return head;
-    }
-
-    public TreeNode getLeft(TreeNode node) {
-        if (node != null)
-            return node.left;
-        else
-            return null;
-    }
-
-    public TreeNode getRight(TreeNode node) {
-        if (node != null)
-            return node.right;
-        else
-            return null;
-    }
-
-    //按照层填充生成一颗树
-    public void createTree(Integer[] nums) {
+    //按照层填充生成一颗树,先用一个ArrayList存储生成的节点，然后根据完全二叉树的规律构建二叉树
+    public void initTree(Integer[] nums) {
         int size = nums.length;
         List<TreeNode> nodes = new ArrayList();
         for (Integer num : nums) {
@@ -55,40 +38,121 @@ public class MyTree {
                 nodes.add(new TreeNode(null, null, num));
         }
         for (int i = 0; i < size / 2 + 1; i++) {
-            if (2 * i + 1 < size && nodes.get(2 * i + 1) != null)
-                nodes.get(i).left = nodes.get(2 * i + 1);
-            if (2 * i + 2 < size && nodes.get(2 * i + 2) != null)
-                nodes.get(i).right = nodes.get(2 * i + 2);
+            if (nodes.get(i) != null) {
+                if (2 * i + 1 < size)
+                    nodes.get(i).left = nodes.get(2 * i + 1);
+                if (2 * i + 2 < size)
+                    nodes.get(i).right = nodes.get(2 * i + 2);
+            }
         }
         head = nodes.get(0);
     }
 
-    //先序遍历树
-    public void preTraverseTree(TreeNode head) {
+    //-----------------------------先序遍历------------------------------
+    //递归先序遍历树
+    public void preTraverseTree_Recursion(TreeNode head) {
         if (head != null) {
-            System.out.println(head.data);
-            preTraverseTree(head.left);
-            preTraverseTree(head.right);
+            System.out.print(head.data + " ");
+            preTraverseTree_Recursion(head.left);
+            preTraverseTree_Recursion(head.right);
         }
     }
 
-    //中序遍历树
-    public void inTraverseTree(TreeNode head) {
-        if (head != null) {
-            preTraverseTree(head.left);
-            System.out.println(head.data);
-            preTraverseTree(head.right);
+    /**
+     * 迭代先序遍历树
+     * 先将head进栈，当栈不为空时
+     * {将栈顶元素tempNode弹出，tempNode的右孩子左孩子依次进栈(不为空时)}
+     */
+    public void preTraverseTree_Iteration(TreeNode head) {
+        if (head == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(head);
+        while (!stack.isEmpty()) {
+            TreeNode tempNode = stack.pop();
+            System.out.print(tempNode.data + " ");
+            if (tempNode.right != null)
+                stack.push(tempNode.right);
+            if (tempNode.left != null)
+                stack.push(tempNode.left);
         }
     }
 
-    //后序遍历树
-    public void postTraverseTree(TreeNode head) {
+    //-----------------------------中序遍历---------------------------------
+    //递归中序遍历树
+    public void inTraverseTree_Recursion(TreeNode head) {
         if (head != null) {
-            preTraverseTree(head.left);
-            preTraverseTree(head.right);
-            System.out.println(head.data);
+            inTraverseTree_Recursion(head.left);
+            System.out.print(head.data + " ");
+            inTraverseTree_Recursion(head.right);
         }
     }
+
+
+    /**
+     * 迭代中序遍历树
+     * cur表示是否右孩子需要进栈，当栈不为空或者cur不为null时
+     * {左孩子一直进栈，直到cur为null，出栈tempNode，如果tempNode右孩子不为空，则进栈并令cur = tempNode.right}
+     */
+
+    public void inTraverseTree_Iteration(TreeNode head) {
+        if (head == null)
+            return;
+        TreeNode cur = head;
+        Stack<TreeNode> stack = new Stack<>();
+        while (!stack.isEmpty() || cur != null) {
+            while (cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            TreeNode tempNode = stack.pop();
+            System.out.print(tempNode.data + " ");
+            if (tempNode.right != null)
+                cur = tempNode.right;
+
+        }
+    }
+
+    //-------------------------------后序遍历-------------------------------------
+    //递归后序遍历树
+    public void postTraverseTree_Recursion(TreeNode head) {
+        if (head != null) {
+            postTraverseTree_Recursion(head.left);
+            postTraverseTree_Recursion(head.right);
+            System.out.print(head.data + " ");
+        }
+    }
+
+    /**
+     * 迭代后序遍历树,cur表示上一次输出的节点，当栈不为空时
+     * {
+     * 当栈顶节点的左孩子不为空，并且左右孩子都没有输出过时，将左孩子入栈(因为右孩子都输出过了则左孩子一定输出过了)，
+     * 否则，当栈顶节点的右孩子不为空，并且右孩子没有输出过时，将右孩子入栈
+     * 否则，栈顶节点出栈，并改变lastNode
+     * }
+     */
+    public void postTraverseTree_Iteration(TreeNode head) {
+        if (head == null)
+            return;
+        //cur表示上一次出栈的节点
+        TreeNode lastNode = head;
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(head);
+        while (!stack.isEmpty()) {
+            TreeNode peek = stack.peek();
+            //当右孩子都输出了则左孩子一定已经输出过了
+            if (peek.left != null && peek.left != lastNode && peek.right != lastNode) {
+                stack.push(peek.left);
+            } else if (peek.right != null && peek.right != lastNode) {
+                stack.push(peek.right);
+            } else {
+                lastNode = stack.pop();
+                System.out.print(lastNode.data + " ");
+            }
+        }
+    }
+
 
     //按层次遍历树
     public void levelTraverseTree(TreeNode head) {
@@ -104,11 +168,37 @@ public class MyTree {
         }
     }
 
+    public ArrayList<ArrayList<TreeNode>> levelOrder(TreeNode root) {
+        ArrayList<ArrayList<TreeNode>> list = new ArrayList();
+        list.add(new ArrayList<TreeNode>());
+        int index = 0;
+        TreeNode last = root, nlast = null;
+        Queue<TreeNode> queue = new LinkedList();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode tempNode = queue.poll();
+            list.get(index).add(tempNode);
+            if (tempNode.left != null) {
+                queue.add(tempNode.left);
+                nlast = tempNode.left;
+            }
+            if (tempNode.right != null) {
+                queue.add(tempNode.right);
+                nlast = tempNode.right;
+            }
+            if (tempNode == last) {
+                list.add(new ArrayList<TreeNode>());
+                index++;
+                last = nlast;
+            }
+        }
+        return list;
+    }
 
     /**
-     *按层次遍历树，并且打印层级关系
-     *last记录当前行的最右节点
-     *nlast记录下一行的最右节点，每进入一个节点就刷新一次
+     * 按层次遍历树，并且打印层级关系
+     * last记录当前行的最右节点
+     * nlast记录下一行的最右节点，每进入一个节点就刷新一次
      */
     public void levelTraverseTree_2(TreeNode head) {
         TreeNode last = head, nlast = null;
@@ -117,7 +207,7 @@ public class MyTree {
         while (!queue.isEmpty()) {
             TreeNode temp = queue.poll();
             System.out.print(temp.data + " ");
-            if (temp.left != null){
+            if (temp.left != null) {
                 queue.add(temp.left);
                 nlast = temp.left;
             }
@@ -132,25 +222,49 @@ public class MyTree {
         }
     }
 
+
+    //树的层次遍历
+    public void levelTraverseTree_3(TreeNode head) {
+        TreeNode last = head, nlast = null;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(head);
+        while (!queue.isEmpty()) {
+            TreeNode tempNode = queue.poll();
+            System.out.print(tempNode.data + " ");
+            if (tempNode.left != null) {
+                queue.add(tempNode.left);
+                nlast = tempNode.left;
+            }
+            if (tempNode.right != null) {
+                queue.add(tempNode.right);
+                nlast = tempNode.right;
+            }
+            if (tempNode == last) {
+                last = nlast;
+                System.out.println();
+            }
+        }
+    }
+
     /**
      * 返回p和q共同的祖先节点
+     *
      * @param root
      * @param p
      * @param q
      * @return
      */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root==null || root==p || root==q)
+        if (root == null || root == p || root == q)
             return root;
 
-        TreeNode leftNode=lowestCommonAncestor(root.left,p,q);
-        TreeNode rightNode=lowestCommonAncestor(root.right,p,q);
+        TreeNode leftNode = lowestCommonAncestor(root.left, p, q);
+        TreeNode rightNode = lowestCommonAncestor(root.right, p, q);
 
-        if(leftNode==null)
+        if (leftNode == null)
             return rightNode;
-        if(rightNode==null)
+        if (rightNode == null)
             return leftNode;
-
         return root;
     }
 }
