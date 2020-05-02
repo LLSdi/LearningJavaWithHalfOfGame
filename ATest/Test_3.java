@@ -1,8 +1,7 @@
 import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Random;
 
 /**
  * @author halfOfGame
@@ -10,10 +9,12 @@ import java.util.HashSet;
  */
 public class Test_3 {
     public static void main(String[] args) {
-        HashMap<Integer, String> integerStringHashMap = new HashMap<>();
-        integerStringHashMap.put(1,"Hello");
-        System.out.println(integerStringHashMap.get(1));
-        integerStringHashMap.put(1,"World");
-        System.out.println(integerStringHashMap.get(1));
+        System.out.println("--------------");
+        assert testAssert(2);
+        System.out.println("--------------");
+    }
+    public static boolean testAssert(int num){
+        int a = 1;
+        return a == num ? true : false;
     }
 }
