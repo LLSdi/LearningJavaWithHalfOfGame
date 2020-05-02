@@ -154,13 +154,18 @@ public class MyTree {
     }
 
 
-    //按层次遍历树
-    public void levelTraverseTree(TreeNode head) {
+    //-----------------------------层序遍历---------------------------------
+
+    /**按层次遍历树
+     *
+     *
+     */
+    public void levelTraverseTree_Normal(TreeNode head) {
         Queue<TreeNode> queue = new LinkedList();
         queue.add(head);
         while (!queue.isEmpty()) {
             TreeNode temp = queue.poll();
-            System.out.println(temp.data);
+            System.out.print(temp.data + " ");
             if (temp.left != null)
                 queue.add(temp.left);
             if (temp.right != null)
@@ -168,91 +173,33 @@ public class MyTree {
         }
     }
 
-    public ArrayList<ArrayList<TreeNode>> levelOrder(TreeNode root) {
-        ArrayList<ArrayList<TreeNode>> list = new ArrayList();
-        list.add(new ArrayList<TreeNode>());
-        int index = 0;
-        TreeNode last = root, nlast = null;
-        Queue<TreeNode> queue = new LinkedList();
-        queue.add(root);
-        while (!queue.isEmpty()) {
-            TreeNode tempNode = queue.poll();
-            list.get(index).add(tempNode);
-            if (tempNode.left != null) {
-                queue.add(tempNode.left);
-                nlast = tempNode.left;
-            }
-            if (tempNode.right != null) {
-                queue.add(tempNode.right);
-                nlast = tempNode.right;
-            }
-            if (tempNode == last) {
-                list.add(new ArrayList<TreeNode>());
-                index++;
-                last = nlast;
-            }
-        }
-        return list;
-    }
-
-    /**
-     * 按层次遍历树，并且打印层级关系
-     * last记录当前行的最右节点
-     * nlast记录下一行的最右节点，每进入一个节点就刷新一次
+    /**按层次遍历二叉树，并且打印出层次结构
+     *
+     * 每次循环都输出一层
      */
-    public void levelTraverseTree_2(TreeNode head) {
-        TreeNode last = head, nlast = null;
+    public void levelTraverseTree_Special(TreeNode head) {
+        if (head == null)
+            return;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(head);
         while (!queue.isEmpty()) {
-            TreeNode temp = queue.poll();
-            System.out.print(temp.data + " ");
-            if (temp.left != null) {
-                queue.add(temp.left);
-                nlast = temp.left;
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode tempNode = queue.poll();
+                System.out.print(tempNode.data + " ");
+                if (tempNode.left != null)
+                    queue.add(tempNode.left);
+                if (tempNode.right != null)
+                    queue.add(tempNode.right);
             }
-            if (temp.right != null) {
-                queue.add(temp.right);
-                nlast = temp.right;
-            }
-            if (temp == last) {
-                System.out.println();
-                last = nlast;
-            }
+            System.out.println();
         }
     }
 
-
-    //树的层次遍历
-    public void levelTraverseTree_3(TreeNode head) {
-        TreeNode last = head, nlast = null;
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(head);
-        while (!queue.isEmpty()) {
-            TreeNode tempNode = queue.poll();
-            System.out.print(tempNode.data + " ");
-            if (tempNode.left != null) {
-                queue.add(tempNode.left);
-                nlast = tempNode.left;
-            }
-            if (tempNode.right != null) {
-                queue.add(tempNode.right);
-                nlast = tempNode.right;
-            }
-            if (tempNode == last) {
-                last = nlast;
-                System.out.println();
-            }
-        }
-    }
 
     /**
      * 返回p和q共同的祖先节点
      *
-     * @param root
-     * @param p
-     * @param q
-     * @return
      */
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null || root == p || root == q)

@@ -1,12 +1,16 @@
+import DataStructuresAndAlgorithmAnalysisThirdEdition.MySortUtils;
 import DataStructuresAndAlgorithmAnalysisThirdEdition.MyTree;
+import edu.princeton.cs.algs4.Stopwatch;
 
 public class Test {
     public static void main(String[] args) {
-        MyTree myTree = new MyTree(new Integer[]{1, 2, 3, 4, 5, 6, 7});
-        System.out.print("递归：");
-        myTree.postTraverseTree_Recursion(myTree.head);
-        System.out.println();
-        System.out.print("迭代：");
-        myTree.postTraverseTree_Iteration(myTree.head);
+        Stopwatch timer = new Stopwatch();
+        int[] nums = {10, 9, 8, 7, 5, 6, 4, 3, 2, 1};
+        System.out.println("排序前：");
+        MySortUtils.display(nums);
+        System.out.println("排序后：");
+        MySortUtils.bubbleSort(nums);
+        MySortUtils.display(nums);
+        System.out.println(timer.elapsedTime());
     }
 }
