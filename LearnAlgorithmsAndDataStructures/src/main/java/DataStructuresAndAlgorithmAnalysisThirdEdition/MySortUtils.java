@@ -114,7 +114,27 @@ public class MySortUtils {
         }
     }
 
+    //-----------------------------插入排序--------------------------------
+    public static void insertSort(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return;
+        }
+        int length = nums.length;
+        for (int i = 1; i < length; i++) {
+            for (int j = i; j > 0; j--) {
+                if (nums[j] >= nums[j - 1]) {
+                    return;
+                }
+                exchange(nums, j, j - 1);
+            }
+        }
+    }
+
     //---------------------------希尔排序---------------------------------
+    /**
+     * 实际上用的是插入排序
+     * @param nums
+     */
     public static void shellSort(int[] nums) {
         if (nums == null || nums.length == 0) {
             return;
@@ -137,19 +157,75 @@ public class MySortUtils {
         }
     }
 
-    public static void myShellSort(int[] nums) {
-        if (nums == null || nums.length == 0){
+    //---------------------------归并排序-----------------------------
+
+    /**
+     * 递归的归并排序
+     * @param nums
+     */
+    public static void mergeSort_Recursion(int[] nums) {
+        if (nums == null || nums.length == 0) {
             return;
         }
         int length = nums.length;
-        int h = 1;
-        while (h < length / 3) {
-            h = 3 * h + 1;
-        }
-        while (h >= 1){
+        int[] tempArray = new int[length];
+        mergeSort_Recursion(nums, tempArray, 0, length - 1);
+    }
 
+    private static void mergeSort_Recursion(int[] nums, int[] tempArray, int low, int high) {
+        if (low >= high) {
+            return;
+        }
+        int middle = (low + high) / 2;
+        mergeSort_Recursion(nums, tempArray, low, middle);
+        mergeSort_Recursion(nums, tempArray, middle + 1, high);
+        //最后一行才调用递归，任意时刻只有一个方法在使用临时数组,所以不会出现临时数组混乱的情况
+        //当前一个有序数组的最后一个元素大于后一个有序数组时才需要排序
+        if (nums[middle] > nums[middle + 1]){
+            merge(nums, tempArray, low, middle, high);
         }
     }
+
+    private static void merge(int[] nums, int[] tempArray, int low, int middle, int high) {
+        int i = low, j = middle + 1;
+        for (int k = low; k <= high; k++) {
+            tempArray[k] = nums[k];
+        }
+        for (int k = low; k <= high; k++) {
+            if (j > high || tempArray[i] < tempArray[j]) {
+                nums[k] = tempArray[i++];
+            } else {
+                nums[k] = tempArray[j++];
+            }
+        }
+    }
+
+
+    /**
+     * 非递归的归并排序
+     * @param nums
+     */
+    public static void mergeSort_NonRecursion(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return;
+        }
+        int length = nums.length;
+        int[] tempArray = new int[length];
+        for (int sz = 1; sz < length; sz = sz + sz) {
+            for (int lo = 0; lo < length - sz; lo += sz + sz) {
+                merge(nums, tempArray, lo, lo + sz - 1, Math.min(lo + sz + sz - 1, length - 1));
+            }
+        }
+    }
+
+    //---------------------------快速排序-----------------------------
+    public static void quickSort(int[] nums) {
+
+    }
+
+    //---------------------------堆排序-----------------------------
+
+
 
     //------------------------外部排序---------------------------------
 }
