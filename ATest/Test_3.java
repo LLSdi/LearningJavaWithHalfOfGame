@@ -1,7 +1,6 @@
-import edu.princeton.cs.algs4.StdDraw;
-import edu.princeton.cs.algs4.StdRandom;
-
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.PriorityQueue;
 
 /**
  * @author halfOfGame
@@ -9,11 +8,14 @@ import java.util.Random;
  */
 public class Test_3 {
     public static void main(String[] args) {
-        int length = 11 ;
-        for (int sz = 1; sz < length; sz = sz + sz) {
-            for (int lo = 0; lo < length - sz; lo += sz + sz) {
-                System.out.println(lo + "," + (lo + sz - 1) + "," + Math.min(lo + sz + sz - 1, length - 1));
-            }
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        for (int i = 1; i <= 10; i++) {
+            arrayList.add(10 - i);
         }
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<Integer>(arrayList);
+        while (!priorityQueue.isEmpty()) {
+            System.out.println(priorityQueue.poll());
+        }
+
     }
 }
