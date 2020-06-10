@@ -5,16 +5,14 @@ import java.util.*;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-import org.apache.hadoop.util.GenericOptionsParser;
 
-public class GetAverage {
+public class simple_data_mining {
     public static int time = 0;
 
     /**
@@ -99,7 +97,7 @@ public class GetAverage {
                 System.exit(2);
             }
             Job job = Job.getInstance(conf, "Single table join");
-            job.setJarByClass(GetAverage.class);
+            job.setJarByClass(simple_data_mining.class);
             job.setMapperClass(Map.class);
             job.setReducerClass(Reduce.class);
             job.setOutputKeyClass(Text.class);
