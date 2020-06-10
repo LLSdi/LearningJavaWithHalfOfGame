@@ -8,17 +8,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="LearnIO" />
         <module name="LearnJVM" />
-        <module name="LearnNetworkProgramming" />
+        <module name="ForTest" />
         <module name="LearnSpring" />
         <module name="LearnAlgorithmsAndDataStructures" />
-        <module name="LearnFunctionalProgramming" />
         <module name="LearnAnnotation" />
         <module name="LearnJunit" />
-        <module name="ForTest" />
         <module name="LearnDesignPatterns" />
-        <module name="LearnSQL" />
+        <module name="LearnNetworkProgramming" />
+        <module name="LearnFunctionalProgramming" />
         <module name="LearnMultiThread" />
         <module name="LearnBigData" />
+        <module name="LearnSQL" />
         <module name="LearnJavaLog" />
       </profile>
     </annotationProcessing>

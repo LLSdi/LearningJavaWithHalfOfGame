@@ -5,20 +5,12 @@ import java.io.*;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.*;
 
-public class FileReadAndWrite {
+public class CommonOperation {
 
     public static Configuration conf;
     public static FileSystem fs;
 
-    public static void main(String[] args) throws IOException {
-        conf = new Configuration();
-        conf.set("fs.defaultFs", "hdfs://localhost:9000");
-        conf.set("hs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
-        fs = FileSystem.get(conf);
 
-
-        fs.close();
-    }
 
     //初始化
     public static void init() {
@@ -106,5 +98,15 @@ public class FileReadAndWrite {
         Path remotePath = new Path(remoteFilePath);
         //第二个参数表示是否可以删除目录
         return fs.delete(remotePath, false);
+    }
+
+
+    public static void main(String[] args) throws IOException {
+        conf = new Configuration();
+        conf.set("fs.defaultFs", "hdfs://localhost:9000");
+        conf.set("hs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
+        fs = FileSystem.get(conf);
+
+        fs.close();
     }
 }
