@@ -23,6 +23,7 @@
         <module>LearnJVM</module>
         <module>LearnAnnotation</module>
         <module>LearnSpring</module>
+        <module>LearnSparkWithScala</module>
     </modules>
 
     <dependencies>
