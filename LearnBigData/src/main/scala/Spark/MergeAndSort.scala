@@ -4,7 +4,7 @@ import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
 import org.apache.spark.HashPartitioner
 
-object CombineAndSort {
+object MergeAndSort {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName("FileSort").setMaster("local")
     val sc = new SparkContext(conf)
