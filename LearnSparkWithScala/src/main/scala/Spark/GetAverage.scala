@@ -31,7 +31,7 @@ object GetAverage {
     val rdd4 = rdd3.mapValues(x => (x, 1))
 
 
-    //第五步：执行reduceByKey操作，计算出每个学生所有课程的总分数和总课程门数。
+    //第五步：执行reduceByKey操作，计算出每个学生所有课程的总分数和总课程门数，x代表第一个元素，y代表第二个元素。
     val rdd5 = rdd4.reduceByKey((x, y) => (x._1 + y._1, x._2 + y._2))
 
 
