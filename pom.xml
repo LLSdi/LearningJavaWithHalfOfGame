@@ -24,6 +24,7 @@
         <module>LearnAnnotation</module>
         <module>LearnSpring</module>
         <module>LearnSparkWithScala</module>
+        <module>Utility</module>
     </modules>
 
     <dependencies>

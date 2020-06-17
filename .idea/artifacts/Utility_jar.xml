@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Utility:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Utility_jar</output-path>
+    <root id="archive" name="Utility.jar">
+      <element id="module-output" name="Utility" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../apache-maven-3.6.3/local_repository/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../apache-maven-3.6.3/local_repository/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -4,28 +4,13 @@
  */
 public class BTest {
 
-    public static void bubbleSort(int[] nums){
-        for (int i = 0; i < nums.length - 1; i++) {
-            for (int j = 0; j < nums.length - i - 1; j++){
-                if (nums[j] > nums[j + 1]){
-                    int temp = nums[j];
-                    nums[j] = nums[j + 1];
-                    nums[j + 1] = temp;
-                }
-            }
-        }
-    }
-
-
-    public static void Test() {
-
-    }
 
     public static void main(String[] args) {
-        int[] ints = {5, 4, 3, 2, 1};
-        bubbleSort(ints);
-        for (int i = 0; i < ints.length; i++) {
-            System.out.println(ints[i]);
-        }
+        int id_1 = 7;
+        int id_2 = 8;
+        int result_1 = (id_1 + 1) ^ 1 - 1;
+        int result_2 = (id_2 + 1) ^ 1 - 1;
+        System.out.println(result_1);
+        System.out.println(result_2);
     }
 }
