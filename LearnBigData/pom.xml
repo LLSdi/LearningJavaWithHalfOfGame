@@ -67,7 +67,7 @@
                             <addClasspath>true</addClasspath>
                             <useUniqueVersions>false</useUniqueVersions>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>JavaTest.Welcome</mainClass>
+                            <mainClass>MapReduce.CombineAndRemoveRepetition</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
