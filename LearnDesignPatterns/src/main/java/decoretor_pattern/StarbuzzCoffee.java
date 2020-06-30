@@ -1,5 +1,10 @@
 package decoretor_pattern;
 
+import decoretor_pattern.codes.Beverage;
+import decoretor_pattern.codes.Espresso;
+import decoretor_pattern.codes.HouseBlend;
+import decoretor_pattern.codes.Mocha;
+
 public class StarbuzzCoffee {
 
     public static void main(String[] args) {

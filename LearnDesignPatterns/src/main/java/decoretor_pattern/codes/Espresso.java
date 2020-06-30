@@ -1,4 +1,4 @@
-package decoretor_pattern;
+package decoretor_pattern.codes;
 
 public class Espresso extends Beverage {
 
