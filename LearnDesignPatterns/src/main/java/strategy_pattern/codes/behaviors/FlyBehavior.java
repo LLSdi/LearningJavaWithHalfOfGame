@@ -1,4 +1,4 @@
-package strategy_pattern.codes.behaviors.inter;
+package strategy_pattern.codes.behaviors;
 
 /**
  * @author halfOfGame

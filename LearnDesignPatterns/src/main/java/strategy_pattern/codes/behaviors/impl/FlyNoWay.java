@@ -1,6 +1,6 @@
 package strategy_pattern.codes.behaviors.impl;
 
-import strategy_pattern.codes.behaviors.inter.FlyBehavior;
+import strategy_pattern.codes.behaviors.FlyBehavior;
 
 /**
  * @author halfOfGame

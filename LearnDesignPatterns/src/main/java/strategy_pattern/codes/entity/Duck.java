@@ -1,7 +1,7 @@
 package strategy_pattern.codes.entity;
 
-import strategy_pattern.codes.behaviors.inter.FlyBehavior;
-import strategy_pattern.codes.behaviors.inter.QuackBehavior;
+import strategy_pattern.codes.behaviors.FlyBehavior;
+import strategy_pattern.codes.behaviors.QuackBehavior;
 
 /**
  * @author halfOfGame

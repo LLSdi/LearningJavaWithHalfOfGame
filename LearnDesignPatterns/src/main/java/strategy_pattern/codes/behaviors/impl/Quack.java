@@ -1,6 +1,6 @@
 package strategy_pattern.codes.behaviors.impl;
 
-import strategy_pattern.codes.behaviors.inter.QuackBehavior;
+import strategy_pattern.codes.behaviors.QuackBehavior;
 
 /**
  * @author halfOfGame
