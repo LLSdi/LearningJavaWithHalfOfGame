@@ -25,6 +25,9 @@
         <module>LearnSpring</module>
         <module>LearnSparkWithScala</module>
         <module>Utility</module>
+        <module>NewSpring</module>
+        <module>Spring</module>
+        <module>LearnFlink</module>
     </modules>
 
     <dependencies>

@@ -10,11 +10,10 @@ import java.util.Stack;
 
 public class ATest {
 
-    //result = [3,3],[2,4],[1,5],
     public static void main(String[] args) {
-        System.out.println((17) % (10));        //result = 7
-        System.out.println((17) % (-10));        //result = 7
-        System.out.println((-17) % (10));        //result = -7
-        System.out.println((-17) % (-10));        //result = -7
+        Runnable r = () -> {
+            System.out.println("Hello world");
+        };
+        r.run();
     }
 }

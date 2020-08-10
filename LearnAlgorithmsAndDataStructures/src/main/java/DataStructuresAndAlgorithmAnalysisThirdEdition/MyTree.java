@@ -1,6 +1,5 @@
 package DataStructuresAndAlgorithmAnalysisThirdEdition;
 
-import sun.reflect.generics.tree.Tree;
 
 import java.util.*;
 
@@ -67,7 +66,7 @@ public class MyTree {
         if (head == null) {
             return;
         }
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque();
         stack.push(head);
         while (!stack.isEmpty()) {
             TreeNode tempNode = stack.pop();
@@ -99,8 +98,8 @@ public class MyTree {
     public void inTraverseTree_Iteration(TreeNode head) {
         if (head == null)
             return;
+        Deque<TreeNode> stack = new ArrayDeque();
         TreeNode cur = head;
-        Stack<TreeNode> stack = new Stack<>();
         while (!stack.isEmpty() || cur != null) {
             while (cur != null) {
                 stack.push(cur);
@@ -137,7 +136,7 @@ public class MyTree {
             return;
         //cur表示上一次出栈的节点
         TreeNode lastNode = head;
-        Stack<TreeNode> stack = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque();
         stack.push(head);
         while (!stack.isEmpty()) {
             TreeNode peek = stack.peek();

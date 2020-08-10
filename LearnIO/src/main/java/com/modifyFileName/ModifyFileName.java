@@ -2,21 +2,16 @@ package com.modifyFileName;
 
 
 import org.apache.commons.io.FileUtils;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.junit.Test;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
-import java.util.stream.Stream;
 
 /**
  * @author halfOfGame
@@ -24,7 +19,7 @@ import java.util.stream.Stream;
  */
 public class ModifyFileName {
     public static void main(String[] args) throws IOException, ParseException {
-        File path = new File("C:\\Users\\Dm20\\Desktop\\38498175");
+        File path = new File("C:\\Users\\halfofgame\\Desktop\\455647281");
         Collection<File> files = FileUtils.listFiles(path, null, true);
         int count = 0;
         String fileName = "";
@@ -32,7 +27,7 @@ public class ModifyFileName {
             if (count % 2 == 0) {
                 fileName = parseJson(file.getAbsolutePath(), "PartName");
             } else {
-                move(file.getAbsolutePath(), "C:\\Users\\Dm20\\Desktop\\Disjoint_Set\\" + fileName + ".flv");
+                move(file.getAbsolutePath(), "C:\\Users\\halfofgame\\Desktop\\NewCoderSQL\\" + fileName + ".mp4");
             }
             count++;
         }
