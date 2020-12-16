@@ -11,9 +11,7 @@ import java.util.Stack;
 public class ATest {
 
     public static void main(String[] args) {
-        Runnable r = () -> {
-            System.out.println("Hello world");
-        };
-        r.run();
+        new Thread(() -> System.out.println("Hello world")).start();
+        new Thread(() -> System.out.println("Hello world")).start();
     }
 }
