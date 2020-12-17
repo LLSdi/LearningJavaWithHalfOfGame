@@ -1,5 +1,6 @@
 import javax.swing.tree.TreeNode;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CTest implements DTest {
 
@@ -9,7 +10,7 @@ public class CTest implements DTest {
 //        List<Integer> list = Arrays.asList(2,1,3,4,5,6,7);
 //        List<Integer> list = Arrays.asList(3,2,1,4,5,6,7);
 //        List<Integer> list = Arrays.asList(1,2,3,4,5,7,6);
-        List<Integer> list = Arrays.asList(1,2,3,4,7,6,5);
+        List<Integer> list = Arrays.asList(1, 2, 3, 4, 7, 6, 5);
         int[] result = new int[2];
         int i, j;
         for (i = 0; i < list.size() - 1; i++) {
@@ -29,8 +30,9 @@ public class CTest implements DTest {
 
 
     public static void main(String[] args) {
-        int[] result = findError();
-        System.out.println(result[0] + " " + result[1]);
-//        System.out.println(Arrays.asList(1, 2, 6, 4, 5, 3, 7));
+        int v1 = Integer.parseInt("2");
+        int v2 = Integer.parseInt("null");
+        System.out.println(v1);
+        System.out.println(v2);
     }
 }

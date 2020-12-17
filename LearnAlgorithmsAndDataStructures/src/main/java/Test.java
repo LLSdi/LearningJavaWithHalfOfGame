@@ -48,7 +48,14 @@ public class Test {
 
 
     public static void main(String[] args) {
-        TreeUtils.TreeNode root = TreeUtils.createNormalTree(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8});
-        System.out.println(TreeUtils.serialize(root));
+        Integer[] nums = new Integer[]{1, 2, 3, null, null, null, 4, null, null, null, null, null, null, 5};
+        TreeUtils.TreeNode root = TreeUtils.createNormalTree(nums);
+        String serializeStr = TreeUtils.serialize(root);
+        System.out.println(serializeStr);
+        System.out.println();
+        TreeUtils.TreeNode rootTwo = TreeUtils.deserializeTwo(serializeStr);
+        TreeUtils.levelTraverse(root);
+        System.out.println();
+        TreeUtils.levelTraverse(rootTwo);
     }
 }

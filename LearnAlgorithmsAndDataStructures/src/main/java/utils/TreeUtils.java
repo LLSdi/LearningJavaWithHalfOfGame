@@ -4,10 +4,10 @@ import java.util.*;
 
 public class TreeUtils {
 
-    private static TreeNode head;
+    private static TreeNode root;
 
-    public static TreeNode getHead() {
-        return head;
+    public static TreeNode getRoot() {
+        return root;
     }
 
     public static class TreeNode {
@@ -40,8 +40,8 @@ public class TreeUtils {
      * @return
      */
     public static TreeNode createNormalTree(int length) {
-        head = createNormalTreeHelper(length, 1);
-        return head;
+        root = createNormalTreeHelper(length, 1);
+        return root;
     }
 
     private static TreeNode createNormalTreeHelper(int length, int data) {
@@ -65,14 +65,26 @@ public class TreeUtils {
         if (nums == null || nums.length == 0) {
             return null;
         }
-        TreeNode[] nodes = new TreeNode[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-
+        int length = nums.length;
+        TreeNode[] nodes = new TreeNode[length];
+        for (int i = 0; i < length; i++) {
+            if (nums[i] == null) {
+                nodes[i] = null;
+            } else {
+                nodes[i] = new TreeNode(nums[i]);
+            }
         }
-        for (int i = 0; i < nums.length; i++) {
-
+        for (int i = 0; i < length / 2; i++) {
+            if (nodes[i] != null) {
+                if (2 * i + 1 < length) {
+                    nodes[i].left = nodes[2 * i + 1];
+                }
+                if (2 * i + 2 < length) {
+                    nodes[i].right = nodes[2 * i + 2];
+                }
+            }
         }
-        return null;
+        return nodes[0];
     }
 
 
@@ -243,13 +255,38 @@ public class TreeUtils {
     /**
      * 用递归实现中序遍历
      *
-     * @param head
+     * @param root
      */
-    public static void inTraverseRecursion(TreeNode head) {
-        if (head != null) {
-            inTraverseRecursion(head.left);
-            System.out.print(head.data + " ");
-            inTraverseRecursion(head.right);
+    public static void inTraverseRecursion(TreeNode root) {
+        if (root != null) {
+            inTraverseRecursion(root.left);
+            System.out.print(root.data + " ");
+            inTraverseRecursion(root.right);
+        }
+    }
+
+
+    /**
+     * 用迭代实现中序遍历
+     *
+     * @param root
+     */
+    public static void inTraverseIteration(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        TreeNode nextNode = root;
+        Stack<TreeNode> stack = new Stack();
+        while (!stack.isEmpty() || nextNode != null) {
+            while (nextNode != null) {
+                stack.push(nextNode);
+                nextNode = nextNode.left;
+            }
+            TreeNode temporaryNode = stack.pop();
+            System.out.println(temporaryNode.data + " ");
+            if (temporaryNode.right != null) {
+                nextNode = temporaryNode.right;
+            }
         }
     }
 
@@ -261,13 +298,43 @@ public class TreeUtils {
     /**
      * 用递归实现后序遍历
      *
-     * @param head
+     * @param root
      */
-    public static void postTraverseRecursion(TreeNode head) {
-        if (head != null) {
-            postTraverseRecursion(head.left);
-            postTraverseRecursion(head.right);
-            System.out.print(head.data + " ");
+    public static void postTraverseRecursion(TreeNode root) {
+        if (root != null) {
+            postTraverseRecursion(root.left);
+            postTraverseRecursion(root.right);
+            System.out.print(root.data + " ");
+        }
+    }
+
+
+    /**
+     * 用迭代实现后序遍历
+     *
+     * @param root
+     */
+    public static void postTraverseIteration(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack();
+        stack.push(root);
+        // root的初始值不能为null,否则右边这种情况时 3节点无法入栈 出现     1
+        //                                                       2
+        //                                                     3
+        TreeNode preNode = root;
+        while (!stack.isEmpty()) {
+            TreeNode peek = stack.peek();
+            // peek.right != preNode，这步很关键，因为当右孩子输出时左孩子一定已经输出过了
+            if (peek.left != null && peek.left != preNode && peek.right != preNode) {
+                stack.push(peek.left);
+            } else if (peek.right != null && peek.right != preNode) {
+                stack.push(peek.right);
+            } else {
+                preNode = stack.pop();
+                System.out.print(preNode.data + " ");
+            }
         }
     }
 
@@ -279,14 +346,14 @@ public class TreeUtils {
     /**
      * 层序遍历二叉树，并打印出层次结构
      *
-     * @param head
+     * @param root
      */
-    public static void levelTraversal(TreeNode head) {
-        if (head == null) {
+    public static void levelTraverse(TreeNode root) {
+        if (root == null) {
             return;
         }
         Queue<TreeNode> queue = new LinkedList();
-        queue.add(head);
+        queue.add(root);
         while (!queue.isEmpty()) {
             int length = queue.size();
             for (int i = 0; i < length; i++) {
@@ -310,37 +377,45 @@ public class TreeUtils {
 
 
     private static Long preNodeVal = Long.MIN_VALUE;
+
     /**
      * 判断是否是二叉搜索树
+     *
      * @param root
      * @return
      */
     public static boolean isSearchTree(TreeNode root) {
-        if(root == null) {
+        if (root == null) {
             return true;
         }
         boolean left = isSearchTree(root.left);
-        if(root.data < preNodeVal) {
+        if (root.data < preNodeVal) {
             return false;
         }
-        boolean right = isSearchTree(root.right);
         preNodeVal = Long.valueOf(root.data);
+        boolean right = isSearchTree(root.right);
         return left && right;
     }
 
     /**
      * 判断是否是
+     *
      * @param root
      * @return
      */
     public static boolean isCompleteTree(TreeNode root) {
-        if(root == null || (root.left == null && root.right == null)) {
-            return true;
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(root);
+        while (queue.peek() != null) {
+            TreeNode node = queue.poll();
+            queue.offer(node.left);
+            queue.offer(node.right);
         }
-        if(root.left == null || root.right == null) {
-            return false;
+
+        while (!queue.isEmpty() && queue.peek() == null) {
+            queue.poll();
         }
-        return isCompleteTree(root.left) && isCompleteTree(root.right);
+        return queue.isEmpty();
     }
 
 
@@ -354,44 +429,91 @@ public class TreeUtils {
         }
         StringBuilder result = new StringBuilder("[");
         Queue<TreeNode> queue = new LinkedList();
-        queue.add(root);
+        queue.offer(root);
         while (!queue.isEmpty()) {
-            TreeNode node = queue.remove();
+            TreeNode node = queue.poll();
             if (node != null) {
                 result.append(node.data + ",");
                 queue.add(node.left);
                 queue.add(node.right);
             } else {
+                boolean finish = true;
+                Iterator<TreeNode> iterator = queue.iterator();
+                while (iterator.hasNext()) {
+                    if (iterator.next() != null) {
+                        finish = false;
+                    }
+                }
+                if (finish) {
+                    break;
+                }
                 result.append("null,");
+                queue.add(null);
+                queue.add(null);
             }
         }
+        // 删除最后一个逗号
         result.deleteCharAt(result.length() - 1);
         result.append("]");
         return result.toString();
     }
 
-    static public TreeNode deserialize(String data) {
+    public static TreeNode deserialize(String data) {
         if (data.equals("[]")) {
             return null;
         }
-        String[] vals = data.substring(1, data.length() - 1).split(",");
-        TreeNode root = new TreeNode(Integer.parseInt(vals[0]));
+        String[] values = data.substring(1, data.length() - 1).split(",");
+        int length = values.length;
+        TreeNode[] nodes = new TreeNode[length];
+        for (int i = 0; i < length; i++) {
+            if (!Objects.equals(values[i], "null")) {
+                nodes[i] = new TreeNode(Integer.parseInt(values[i]));
+            }
+        }
+        for (int i = 0; i < length / 2; i++) {
+            if (nodes[i] != null) {
+                if (2 * i + 1 < length) {
+                    nodes[i].left = nodes[2 * i + 1];
+                }
+                if (2 * i + 2 < length) {
+                    nodes[i].right = nodes[2 * i + 2];
+                }
+            }
+        }
+        return nodes[0];
+    }
+
+    public static TreeNode deserializeTwo(String data) {
+        if(data.equals("[]")) return null;
+        String[] values = data.substring(1, data.length() - 1).split(",");
+        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
         Queue<TreeNode> queue = new LinkedList();
-        queue.add(root);
-        int i = 1;
-        while (!queue.isEmpty()) {
-            TreeNode node = queue.poll();
-            if (!vals[i].equals("null")) {
-                node.left = new TreeNode(Integer.parseInt(vals[i]));
-                queue.add(node.left);
+        queue.offer(root);
+        int index = 1;
+        while(!queue.isEmpty()) {
+            TreeNode currentNode = queue.poll();
+            if (currentNode == null) {
+                queue.offer(null);
+                queue.offer(null);
+            } else {
+
             }
-            i++;
-            if (!vals[i].equals("null")) {
-                node.right = new TreeNode(Integer.parseInt(vals[i]));
-                queue.add(node.right);
+            TreeNode leftNode = null;
+            TreeNode rightNode = null;
+            if (!Objects.equals(values[index], "null")) {
+                leftNode = new TreeNode(Integer.parseInt(values[index]));
             }
-            i++;
+            index++;
+            if (!Objects.equals(values[index], "null")) {
+                rightNode = new TreeNode(Integer.parseInt(values[index]));
+            }
+            index++;
+            currentNode.left = leftNode;
+            currentNode.right = rightNode;
+            queue.offer(leftNode);
+            queue.offer(rightNode);
         }
         return root;
     }
+
 }

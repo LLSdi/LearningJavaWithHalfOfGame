@@ -95,21 +95,20 @@ public class MyTree {
      * {左孩子一直进栈，直到cur为null，出栈tempNode，如果tempNode右孩子不为空，则进栈并令cur = tempNode.right}
      */
 
-    public void inTraverseTree_Iteration(TreeNode head) {
-        if (head == null)
+    public void inTraverseTree_Iteration(TreeNode root) {
+        if (root == null)
             return;
         Deque<TreeNode> stack = new ArrayDeque();
-        TreeNode cur = head;
-        while (!stack.isEmpty() || cur != null) {
-            while (cur != null) {
-                stack.push(cur);
-                cur = cur.left;
+        TreeNode nextNode = root;
+        while (!stack.isEmpty() || nextNode != null) {
+            while (nextNode != null) {
+                stack.push(nextNode);
+                nextNode = nextNode.left;
             }
             TreeNode tempNode = stack.pop();
             System.out.print(tempNode.data + " ");
             if (tempNode.right != null)
-                cur = tempNode.right;
-
+                nextNode = tempNode.right;
         }
     }
 
@@ -134,20 +133,20 @@ public class MyTree {
     public void postTraverseTree_Iteration(TreeNode head) {
         if (head == null)
             return;
-        //cur表示上一次出栈的节点
-        TreeNode lastNode = head;
+        // preNode表示上一次出栈的节点
+        TreeNode preNode = head;
         Deque<TreeNode> stack = new ArrayDeque();
         stack.push(head);
         while (!stack.isEmpty()) {
             TreeNode peek = stack.peek();
             //当右孩子都输出了则左孩子一定已经输出过了
-            if (peek.left != null && peek.left != lastNode && peek.right != lastNode) {
+            if (peek.left != null && peek.left != preNode && peek.right != preNode) {
                 stack.push(peek.left);
-            } else if (peek.right != null && peek.right != lastNode) {
+            } else if (peek.right != null && peek.right != preNode) {
                 stack.push(peek.right);
             } else {
-                lastNode = stack.pop();
-                System.out.print(lastNode.data + " ");
+                preNode = stack.pop();
+                System.out.print(preNode.data + " ");
             }
         }
     }

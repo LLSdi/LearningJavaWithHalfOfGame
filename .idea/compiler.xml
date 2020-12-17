@@ -9,9 +9,9 @@
         <module name="LearnIO" />
         <module name="NewSpring" />
         <module name="LearnJVM" />
+        <module name="LearnJavaLog" />
         <module name="LearnNetworkProgramming" />
         <module name="LearnSpring" />
-        <module name="LearnAlgorithmsAndDataStructures" />
         <module name="LearnFunctionalProgramming" />
         <module name="LearnAnnotation" />
         <module name="LearnJunit" />
@@ -22,7 +22,7 @@
         <module name="LearnSQL" />
         <module name="LearnMultiThread" />
         <module name="LearnBigData" />
-        <module name="LearnJavaLog" />
+        <module name="LearnAlgorithmsAndDataStructures" />
         <module name="LearnFlink" />
         <module name="ForTest" />
       </profile>
